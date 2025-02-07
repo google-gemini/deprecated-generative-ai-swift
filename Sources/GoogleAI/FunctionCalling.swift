@@ -179,6 +179,7 @@ public struct Tool {
   ///   ``FunctionResponse`` in ``ModelContent/Part/functionResponse(_:)`` with the
   ///   ``ModelContent/role`` "function", providing generation context for the next model turn.
   ///   - codeExecution: Enables the model to execute code as part of generation, if provided.
+  ///   - googleSearch: Enables the Google Search.
   public init(functionDeclarations: [FunctionDeclaration]? = nil,
               codeExecution: CodeExecution? = nil,
               googleSearch: GoogleSearch? = nil) {
