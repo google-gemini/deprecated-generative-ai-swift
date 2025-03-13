@@ -76,6 +76,13 @@ public struct GenerationConfig {
   ///   this is limited to `application/json`.
   public let responseSchema: Schema?
 
+  /// Array of output response modalities
+  ///
+  /// Supported modalities:
+  /// - `text`: Text output
+  /// - `image`: Image output
+  public let responseModalities: [String]?
+
   /// Creates a new `GenerationConfig` value.
   ///
   /// - Parameters:
@@ -87,10 +94,11 @@ public struct GenerationConfig {
   ///   - stopSequences: See ``stopSequences``.
   ///   - responseMIMEType: See ``responseMIMEType``.
   ///   - responseSchema: See ``responseSchema``.
+  ///   - responseModalities: See ``responseModalities``.
   public init(temperature: Float? = nil, topP: Float? = nil, topK: Int? = nil,
               candidateCount: Int? = nil, maxOutputTokens: Int? = nil,
               stopSequences: [String]? = nil, responseMIMEType: String? = nil,
-              responseSchema: Schema? = nil) {
+              responseSchema: Schema? = nil, responseModalities: [String]? = nil) {
     // Explicit init because otherwise if we re-arrange the above variables it changes the API
     // surface.
     self.temperature = temperature
@@ -101,6 +109,7 @@ public struct GenerationConfig {
     self.stopSequences = stopSequences
     self.responseMIMEType = responseMIMEType
     self.responseSchema = responseSchema
+    self.responseModalities = responseModalities
   }
 }
 
