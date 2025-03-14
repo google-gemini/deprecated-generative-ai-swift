@@ -140,7 +140,7 @@ extension ModelContent.Part: Codable {
   }
 
   enum InlineDataKeys: String, CodingKey {
-    case mimeType = "mimeType"
+    case mimeType
     case bytes = "data"
   }
 
