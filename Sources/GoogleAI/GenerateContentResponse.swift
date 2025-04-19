@@ -162,6 +162,9 @@ public enum FinishReason: String {
   /// NOTE: When streaming, the Candidate.content will be empty if content filters blocked the
   /// output.
   case safety = "SAFETY"
+    
+  /// The token generation was stopped because the response was flagged for image safety reasons.
+  case imageSafety = "IMAGE_SAFETY"
 
   /// The token generation was stopped because the response was flagged for unauthorized citations.
   case recitation = "RECITATION"
