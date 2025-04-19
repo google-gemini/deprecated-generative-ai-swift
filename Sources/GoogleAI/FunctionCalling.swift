@@ -164,6 +164,9 @@ public struct Tool {
   /// Enables the model to execute code as part of generation.
   let codeExecution: CodeExecution?
 
+  /// Enables the Google Search
+  let googleSearch: GoogleSearch?
+
   /// Constructs a new `Tool`.
   ///
   /// - Parameters:
@@ -176,10 +179,13 @@ public struct Tool {
   ///   ``FunctionResponse`` in ``ModelContent/Part/functionResponse(_:)`` with the
   ///   ``ModelContent/role`` "function", providing generation context for the next model turn.
   ///   - codeExecution: Enables the model to execute code as part of generation, if provided.
+  ///   - googleSearch: Enables the Google Search.
   public init(functionDeclarations: [FunctionDeclaration]? = nil,
-              codeExecution: CodeExecution? = nil) {
+              codeExecution: CodeExecution? = nil,
+              googleSearch: GoogleSearch? = nil) {
     self.functionDeclarations = functionDeclarations
     self.codeExecution = codeExecution
+    self.googleSearch = googleSearch
   }
 }
 
@@ -256,6 +262,12 @@ public struct FunctionResponse: Equatable {
 /// generated when using this tool.
 public struct CodeExecution {
   /// Constructs a new `CodeExecution` tool.
+  public init() {}
+}
+
+/// Tool for grounding with Google Search
+public struct GoogleSearch {
+  /// Constructs a new `GoogleSearch` tool.
   public init() {}
 }
 
@@ -350,6 +362,8 @@ extension ToolConfig: Encodable {}
 extension FunctionResponse: Encodable {}
 
 extension CodeExecution: Encodable {}
+
+extension GoogleSearch: Encodable {}
 
 extension ExecutableCode: Codable {}
 
