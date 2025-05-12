@@ -19,12 +19,6 @@
 		86FBBA272BBF0594006031A1 /* FunctionCallingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FBBA252BBF0594006031A1 /* FunctionCallingViewModel.swift */; };
 		880266762B0FC39000CF7CB6 /* PhotoReasoningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8802666F2B0FC39000CF7CB6 /* PhotoReasoningViewModel.swift */; };
 		880266792B0FC39000CF7CB6 /* PhotoReasoningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880266752B0FC39000CF7CB6 /* PhotoReasoningScreen.swift */; };
-		881B753A2B0FDCE600528058 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C192B0FBDC300F64795 /* APIKey.swift */; };
-		881B753B2B0FDCE600528058 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C192B0FBDC300F64795 /* APIKey.swift */; };
-		88209C152B0F928F00F64795 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */; };
-		88209C162B0F92AF00F64795 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */; };
-		88209C172B0F92AF00F64795 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */; };
-		88209C1E2B0FBDC300F64795 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C192B0FBDC300F64795 /* APIKey.swift */; };
 		88209C1F2B0FBDC300F64795 /* SummarizeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1B2B0FBDC300F64795 /* SummarizeScreen.swift */; };
 		88209C202B0FBDC300F64795 /* SummarizeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C1D2B0FBDC300F64795 /* SummarizeViewModel.swift */; };
 		88209C242B0FBE1700F64795 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 88209C232B0FBE1700F64795 /* MarkdownUI */; };
@@ -64,8 +58,6 @@
 		88E10F592B11131900C08E95 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F582B11131900C08E95 /* ChatMessage.swift */; };
 		88E10F5B2B11133E00C08E95 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F5A2B11133E00C08E95 /* MessageView.swift */; };
 		88E10F5D2B11135000C08E95 /* BouncingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E10F5C2B11135000C08E95 /* BouncingDots.swift */; };
-		88E10F5E2B11140200C08E95 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */; };
-		88E10F5F2B11140500C08E95 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88209C192B0FBDC300F64795 /* APIKey.swift */; };
 		CB0DFFD52B2B4F08006E109D /* GenerativeAIUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = CB0DFFD42B2B4F08006E109D /* GenerativeAIUIComponents */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +67,6 @@
 		86FBBA252BBF0594006031A1 /* FunctionCallingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCallingViewModel.swift; sourceTree = "<group>"; };
 		8802666F2B0FC39000CF7CB6 /* PhotoReasoningViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReasoningViewModel.swift; sourceTree = "<group>"; };
 		880266752B0FC39000CF7CB6 /* PhotoReasoningScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReasoningScreen.swift; sourceTree = "<group>"; };
-		88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
-		88209C192B0FBDC300F64795 /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		88209C1B2B0FBDC300F64795 /* SummarizeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummarizeScreen.swift; sourceTree = "<group>"; };
 		88209C1D2B0FBDC300F64795 /* SummarizeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummarizeViewModel.swift; sourceTree = "<group>"; };
 		88263BEE2B239BFE008AB09B /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -218,7 +208,6 @@
 			children = (
 				88B8A9352B0FCBA700424728 /* GenerativeAIUIComponents */,
 				86E8E2012DD25F5A003DBFE4 /* GoogleService-Info.plist */,
-				88B8A91F2B0FC73700424728 /* APIKey */,
 				8848C8312B0D04BC007B434F /* GenerativeAISample */,
 				8848C8452B0D051E007B434F /* GenerativeAITextSample */,
 				8848C8572B0D056C007B434F /* GenerativeAIMultimodalSample */,
@@ -299,15 +288,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		88B8A91F2B0FC73700424728 /* APIKey */ = {
-			isa = PBXGroup;
-			children = (
-				88209C192B0FBDC300F64795 /* APIKey.swift */,
-				88209C142B0F928F00F64795 /* GenerativeAI-Info.plist */,
-			);
-			path = APIKey;
-			sourceTree = "<group>";
-		};
 		88E10F432B110D5300C08E95 /* ChatSample */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,7 +352,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8848C83D2B0D04BD007B434F /* Build configuration list for PBXNativeTarget "GenerativeAISample" */;
 			buildPhases = (
-				880BB1102B16519D0014C3DF /* ShellScript */,
 				8848C82B2B0D04BC007B434F /* Sources */,
 				8848C82C2B0D04BC007B434F /* Frameworks */,
 				8848C82D2B0D04BC007B434F /* Resources */,
@@ -395,7 +374,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8848C84F2B0D051F007B434F /* Build configuration list for PBXNativeTarget "GenerativeAITextSample" */;
 			buildPhases = (
-				880BB10F2B1651650014C3DF /* ShellScript */,
 				8848C8402B0D051E007B434F /* Sources */,
 				8848C8412B0D051E007B434F /* Frameworks */,
 				8848C8422B0D051E007B434F /* Resources */,
@@ -417,7 +395,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8848C8612B0D056D007B434F /* Build configuration list for PBXNativeTarget "GenerativeAIMultimodalSample" */;
 			buildPhases = (
-				880BB10E2B1651210014C3DF /* ShellScript */,
 				8848C8522B0D056C007B434F /* Sources */,
 				8848C8532B0D056C007B434F /* Frameworks */,
 				8848C8542B0D056C007B434F /* Resources */,
@@ -440,7 +417,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88E10F4F2B110D5400C08E95 /* Build configuration list for PBXNativeTarget "ChatSample" */;
 			buildPhases = (
-				880BB10C2B164F790014C3DF /* ShellScript */,
 				88E10F3E2B110D5300C08E95 /* Sources */,
 				88E10F3F2B110D5300C08E95 /* Frameworks */,
 				88E10F402B110D5300C08E95 /* Resources */,
@@ -517,7 +493,6 @@
 				8848C83A2B0D04BD007B434F /* Preview Assets.xcassets in Resources */,
 				86E8E2032DD25F5A003DBFE4 /* GoogleService-Info.plist in Resources */,
 				8848C8372B0D04BD007B434F /* Assets.xcassets in Resources */,
-				88209C152B0F928F00F64795 /* GenerativeAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +503,6 @@
 				8848C84E2B0D051F007B434F /* Preview Assets.xcassets in Resources */,
 				86E8E2052DD25F5A003DBFE4 /* GoogleService-Info.plist in Resources */,
 				8848C84B2B0D051F007B434F /* Assets.xcassets in Resources */,
-				88209C162B0F92AF00F64795 /* GenerativeAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +513,6 @@
 				8848C8602B0D056D007B434F /* Preview Assets.xcassets in Resources */,
 				86E8E2022DD25F5A003DBFE4 /* GoogleService-Info.plist in Resources */,
 				8848C85D2B0D056D007B434F /* Assets.xcassets in Resources */,
-				88209C172B0F92AF00F64795 /* GenerativeAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,86 +523,10 @@
 				88E10F4C2B110D5400C08E95 /* Preview Assets.xcassets in Resources */,
 				86E8E2042DD25F5A003DBFE4 /* GoogleService-Info.plist in Resources */,
 				88E10F492B110D5400C08E95 /* Assets.xcassets in Resources */,
-				88E10F5E2B11140200C08E95 /* GenerativeAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		880BB10C2B164F790014C3DF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/APIKey/GenerativeAI-Info.plist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"GenerativeAI-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/APIKey/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/APIKey/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
-		};
-		880BB10E2B1651210014C3DF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/APIKey/GenerativeAI-Info.plist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"GenerativeAI-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/APIKey/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/APIKey/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
-		};
-		880BB10F2B1651650014C3DF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/APIKey/GenerativeAI-Info.plist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"GenerativeAI-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/APIKey/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/APIKey/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
-		};
-		880BB1102B16519D0014C3DF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/APIKey/GenerativeAI-Info.plist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"GenerativeAI-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/APIKey/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/APIKey/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8848C82B2B0D04BC007B434F /* Sources */ = {
@@ -642,7 +539,6 @@
 				8848C8352B0D04BC007B434F /* ContentView.swift in Sources */,
 				886F95D52B17BA010036F07A /* SummarizeScreen.swift in Sources */,
 				86FBBA072BBE0D49006031A1 /* FunctionCallingScreen.swift in Sources */,
-				881B753B2B0FDCE600528058 /* APIKey.swift in Sources */,
 				8848C8332B0D04BC007B434F /* GenerativeAISampleApp.swift in Sources */,
 				886F95E02B17D5010036F07A /* ConversationViewModel.swift in Sources */,
 				886F95DD2B17D5010036F07A /* MessageView.swift in Sources */,
@@ -660,7 +556,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88209C1F2B0FBDC300F64795 /* SummarizeScreen.swift in Sources */,
-				88209C1E2B0FBDC300F64795 /* APIKey.swift in Sources */,
 				8848C8472B0D051E007B434F /* GenerativeAITextSampleApp.swift in Sources */,
 				88209C202B0FBDC300F64795 /* SummarizeViewModel.swift in Sources */,
 			);
@@ -673,7 +568,6 @@
 				880266762B0FC39000CF7CB6 /* PhotoReasoningViewModel.swift in Sources */,
 				880266792B0FC39000CF7CB6 /* PhotoReasoningScreen.swift in Sources */,
 				8848C8592B0D056C007B434F /* GenerativeAIMultimodalSampleApp.swift in Sources */,
-				881B753A2B0FDCE600528058 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +576,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E10F5B2B11133E00C08E95 /* MessageView.swift in Sources */,
-				88E10F5F2B11140500C08E95 /* APIKey.swift in Sources */,
 				88E10F572B1112F600C08E95 /* ConversationViewModel.swift in Sources */,
 				88E10F552B1112CA00C08E95 /* ConversationScreen.swift in Sources */,
 				88E10F592B11131900C08E95 /* ChatMessage.swift in Sources */,
