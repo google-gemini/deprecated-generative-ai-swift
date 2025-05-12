@@ -54,9 +54,9 @@ class FunctionCallingViewModel: ObservableObject {
               values: ["USD", "EUR", "JPY", "GBP", "AUD", "CAD"], // REPLACED: `enumValues`
               description: "The currency to convert to in ISO 4217 format"
             ),
-          ],
+          ]
           // REMOVED: `requiredParameters: ["currency_from", "currency_to"]`
-        )
+        ),
       ])]
     )
     chat = model.startChat()
