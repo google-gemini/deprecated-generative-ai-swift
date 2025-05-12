@@ -1017,8 +1017,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				kind = revision;
+				revision = 5f613358148239d0292c0cef674a3c2314737f9e;
 			};
 		};
 		DEA09AC32B1FCE22001962D9 /* XCRemoteSwiftPackageReference "NetworkImage" */ = {
@@ -1026,7 +1026,7 @@
 			repositoryURL = "https://github.com/gonzalezreal/NetworkImage";
 			requirement = {
 				kind = revision;
-				revision = 7aff8d1b31148d32c5933d75557d42f6323ee3d1;
+				revision = 2849f5323265386e200484b0d0f896e73c3411b9;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
