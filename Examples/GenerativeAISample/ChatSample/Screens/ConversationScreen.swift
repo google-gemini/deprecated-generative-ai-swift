@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// REMOVED: `import GoogleGenerativeAI` -- was not used in this file
 import GenerativeAIUIComponents
-import GoogleGenerativeAI
 import SwiftUI
 
 struct ConversationScreen: View {

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // REPLACED: `import GoogleGenerativeAI`
 import Foundation
-import GoogleGenerativeAI
 import UIKit
 
 @MainActor
@@ -30,7 +30,7 @@ class FunctionCallingViewModel: ObservableObject {
   }
 
   /// Function calls pending processing
-  private var functionCalls = [FunctionCall]()
+  private var functionCalls = [FunctionCallPart]() // RENAMED: `FunctionCall` to `FunctionCallPart`
 
   private var model: GenerativeModel
   private var chat: Chat
@@ -38,28 +38,24 @@ class FunctionCallingViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   init() {
-    model = GenerativeModel(
-      name: "gemini-1.5-flash-latest",
-      apiKey: APIKey.default,
-      tools: [Tool(functionDeclarations: [
+    model = FirebaseAI.firebaseAI().generativeModel( // REPLACED: `model = GenerativeModel(`
+      modelName: "gemini-2.0-flash", // REPLACED: `model:` with `modelName:`
+      // REMOVED: `apiKey: APIKey.default,`
+      tools: [.functionDeclarations([ // REPLACED: `Tool(functionDeclarations:`
         FunctionDeclaration(
           name: "get_exchange_rate",
           description: "Get the exchange rate for currencies between countries",
           parameters: [
-            "currency_from": Schema(
-              type: .string,
-              format: "enum",
-              description: "The currency to convert from in ISO 4217 format",
-              enumValues: ["USD", "EUR", "JPY", "GBP", "AUD", "CAD"]
+            "currency_from": .enumeration( // REPLACED: `Schema(type: .string, format: "enum", ...`
+              values: ["USD", "EUR", "JPY", "GBP", "AUD", "CAD"], // REPLACED: `enumValues`
+              description: "The currency to convert from in ISO 4217 format"
             ),
-            "currency_to": Schema(
-              type: .string,
-              format: "enum",
-              description: "The currency to convert to in ISO 4217 format",
-              enumValues: ["USD", "EUR", "JPY", "GBP", "AUD", "CAD"]
+            "currency_to": .enumeration( // REPLACED: `Schema(type: .string, format: "enum", ...`
+              values: ["USD", "EUR", "JPY", "GBP", "AUD", "CAD"], // REPLACED: `enumValues`
+              description: "The currency to convert to in ISO 4217 format"
             ),
           ],
-          requiredParameters: ["currency_from", "currency_to"]
+          // REMOVED: `requiredParameters: ["currency_from", "currency_to"]`
         ),
       ])]
     )
@@ -117,12 +113,12 @@ class FunctionCallingViewModel: ObservableObject {
     let functionResponses = try await processFunctionCalls()
     let responseStream: AsyncThrowingStream<GenerateContentResponse, Error>
     if functionResponses.isEmpty {
-      responseStream = chat.sendMessageStream(text)
+      responseStream = try chat.sendMessageStream(text) // ADDED: `try`
     } else {
       for functionResponse in functionResponses {
         messages.insert(functionResponse.chatMessage(), at: messages.count - 1)
       }
-      responseStream = chat.sendMessageStream(functionResponses.modelContent())
+      responseStream = try chat.sendMessageStream(functionResponses.modelContent()) // ADDED: `try`
     }
     for try await chunk in responseStream {
       processResponseContent(content: chunk)
@@ -150,26 +146,29 @@ class FunctionCallingViewModel: ObservableObject {
 
     for part in candidate.content.parts {
       switch part {
-      case let .text(text):
+      case let textPart as TextPart: // REPLACED: `case let .text(text)`
         // replace pending message with backend response
-        messages[messages.count - 1].message += text
+        messages[messages.count - 1].message += textPart.text
         messages[messages.count - 1].pending = false
-      case let .functionCall(functionCall):
+      case let functionCall as FunctionCallPart: // REPLACED: `.functionCall(functionCall)`
         messages.insert(functionCall.chatMessage(), at: messages.count - 1)
         functionCalls.append(functionCall)
-      case .data, .fileData, .functionResponse, .executableCode, .codeExecutionResult:
-        fatalError("Unsupported response content.")
+      case is InlineDataPart, is FileDataPart:
+        fatalError("Unsupported response content: \(part)")
+      // REMOVED: `.executableCode, .codeExecutionResult`
+      default:
+        fatalError("Unknown response content: \(part)")
       }
     }
   }
 
-  func processFunctionCalls() async throws -> [FunctionResponse] {
-    var functionResponses = [FunctionResponse]()
+  func processFunctionCalls() async throws -> [FunctionResponsePart] {
+    var functionResponses = [FunctionResponsePart]()
     for functionCall in functionCalls {
       switch functionCall.name {
       case "get_exchange_rate":
         let exchangeRates = getExchangeRate(args: functionCall.args)
-        functionResponses.append(FunctionResponse(
+        functionResponses.append(FunctionResponsePart(
           name: "get_exchange_rate",
           response: exchangeRates
         ))
@@ -214,7 +213,7 @@ class FunctionCallingViewModel: ObservableObject {
   }
 }
 
-private extension FunctionCall {
+private extension FunctionCallPart { // RENAMED: `FunctionCall` to `FunctionCallPart`
   func chatMessage() -> ChatMessage {
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
@@ -234,7 +233,7 @@ private extension FunctionCall {
   }
 }
 
-private extension FunctionResponse {
+private extension FunctionResponsePart { // RENAMED: `FunctionResponse` to `FunctionResponsePart`
   func chatMessage() -> ChatMessage {
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
@@ -254,11 +253,11 @@ private extension FunctionResponse {
   }
 }
 
-private extension [FunctionResponse] {
+private extension [FunctionResponsePart] { // RENAMED: `FunctionResponse` to `FunctionResponsePart`
   func modelContent() -> [ModelContent] {
     return self.map { ModelContent(
       role: "function",
-      parts: [ModelContent.Part.functionResponse($0)]
+      parts: [$0] // REPLACED: `[ModelContent.Part.functionResponse($0)]`
     )
     }
   }

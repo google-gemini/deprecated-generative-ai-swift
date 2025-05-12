@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // REPLACED: `import GoogleGenerativeAI`
 import Foundation
-import GoogleGenerativeAI
 import OSLog
 
 @MainActor
@@ -32,7 +32,11 @@ class SummarizeViewModel: ObservableObject {
   private var model: GenerativeModel?
 
   init() {
-    model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+    // BEFORE
+    // model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+
+    // AFTER
+    model = FirebaseAI.firebaseAI().generativeModel(modelName: "gemini-2.0-flash")
   }
 
   func summarize(inputText: String) async {
@@ -50,7 +54,7 @@ class SummarizeViewModel: ObservableObject {
 
       let prompt = "Summarize the following text for me: \(inputText)"
 
-      let outputContentStream = model.generateContentStream(prompt)
+      let outputContentStream = try model.generateContentStream(prompt) // ADDED: `try`
 
       // stream response
       for try await outputContent in outputContentStream {

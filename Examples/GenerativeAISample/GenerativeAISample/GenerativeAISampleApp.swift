@@ -12,10 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseCore // ADDED
 import SwiftUI
 
 @main
 struct GenerativeAISampleApp: App {
+  init() {
+    FirebaseApp.configure() // ADDED
+  }
+
   var body: some Scene {
     WindowGroup {
       ContentView()

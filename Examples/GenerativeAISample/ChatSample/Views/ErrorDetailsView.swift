@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleGenerativeAI
+import FirebaseAI // REPLACED: `GoogleGenerativeAI` with `FirebaseAI`
 import MarkdownUI
 import SwiftUI
 
-extension SafetySetting.HarmCategory: CustomStringConvertible {
+extension HarmCategory: CustomStringConvertible { // REMOVED: `SafetySetting.`
   public var description: String {
     switch self {
     case .dangerousContent: "Dangerous content"
     case .harassment: "Harassment"
     case .hateSpeech: "Hate speech"
     case .sexuallyExplicit: "Sexually explicit"
-    case .unknown: "Unknown"
-    case .unspecified: "Unspecified"
+    case .civicIntegrity: "Civic integrity" // ADDED
+    // REMOVED: case .unspecified: "Unspecified"
+    default: "Unknown" // REPLACED `case .unknown`
     }
   }
 }
@@ -36,8 +37,7 @@ extension SafetyRating.HarmProbability: CustomStringConvertible {
     case .low: "Low"
     case .medium: "Medium"
     case .negligible: "Negligible"
-    case .unknown: "Unknown"
-    case .unspecified: "Unspecified"
+    default: "Unknown" // REPLACED: `case .unknown`
     }
   }
 }
@@ -102,6 +102,17 @@ struct ErrorDetailsView: View {
                             value: underlyingError.localizedDescription)
           }
 
+        // ADDED
+        case let GenerateContentError.promptImageContentError(underlying: underlyingError):
+          Section("Error Type") {
+            Text("Creating prompt image content failed")
+          }
+
+          Section("Details") {
+            SubtitleFormRow(title: "Error description",
+                            value: underlyingError.localizedDescription)
+          }
+
         case let GenerateContentError.promptBlocked(response: generateContentResponse):
           Section("Error Type") {
             Text("Your prompt was blocked")
@@ -142,36 +153,9 @@ struct ErrorDetailsView: View {
             SafetyRatingsSection(ratings: ratings)
           }
 
-        case GenerateContentError.invalidAPIKey:
-          Section("Error Type") {
-            Text("Invalid API Key")
-          }
+          // REMOVED: `GenerateContentError.invalidAPIKey`
 
-          Section("Details") {
-            SubtitleFormRow(title: "Error description", value: error.localizedDescription)
-            SubtitleMarkdownFormRow(
-              title: "Help",
-              value: """
-              Please provide a valid value for `API_KEY` in the `GenerativeAI-Info.plist` file.
-              """
-            )
-          }
-
-        case GenerateContentError.unsupportedUserLocation:
-          Section("Error Type") {
-            Text("Unsupported User Location")
-          }
-
-          Section("Details") {
-            SubtitleFormRow(title: "Error description", value: error.localizedDescription)
-            SubtitleMarkdownFormRow(
-              title: "Help",
-              value: """
-              The API is unsupported in your location (country / territory); please see the list of
-              [available regions](https://ai.google.dev/available_regions#available_regions).
-              """
-            )
-          }
+          // REMOVED: `GenerateContentError.unsupportedUserLocation`
 
         default:
           Section("Error Type") {
@@ -192,23 +176,32 @@ struct ErrorDetailsView: View {
 #Preview("Response Stopped Early") {
   let error = GenerateContentError.responseStoppedEarly(
     reason: .maxTokens,
-    response: GenerateContentResponse(candidates: [
-      CandidateResponse(content: ModelContent(role: "model", [
-        """
-        A _hypothetical_ model response.
-        Cillum ex aliqua amet aliquip labore amet eiusmod consectetur reprehenderit sit commodo.
-        """,
-      ]),
-      safetyRatings: [
-        SafetyRating(category: .dangerousContent, probability: .high),
-        SafetyRating(category: .harassment, probability: .low),
-        SafetyRating(category: .hateSpeech, probability: .low),
-        SafetyRating(category: .sexuallyExplicit, probability: .low),
+    response: GenerateContentResponse(
+      candidates: [
+        Candidate( // REPLACED: `CandidateResponse` with `Candidate`
+          content: ModelContent(role: "model", parts: [ // ADDED: `parts: `
+            """
+            A _hypothetical_ model response.
+            Cillum ex aliqua amet aliquip labore amet eiusmod consectetur reprehenderit sit commodo.
+            """,
+          ]),
+          safetyRatings: [
+            // ADDED: `probabilityScore`, `severity`, `severityScore`, and `blocked`
+            SafetyRating(category: .dangerousContent, probability: .high, probabilityScore: 0.0,
+                         severity: .negligible, severityScore: 0.0, blocked: false),
+            SafetyRating(category: .harassment, probability: .low, probabilityScore: 0.0,
+                         severity: .negligible, severityScore: 0.0, blocked: false),
+            SafetyRating(category: .hateSpeech, probability: .low, probabilityScore: 0.0,
+                         severity: .negligible, severityScore: 0.0, blocked: false),
+            SafetyRating(category: .sexuallyExplicit, probability: .low, probabilityScore: 0.0,
+                         severity: .negligible, severityScore: 0.0, blocked: false),
+          ],
+          finishReason: FinishReason.maxTokens,
+          citationMetadata: nil
+        ),
       ],
-      finishReason: FinishReason.maxTokens,
-      citationMetadata: nil),
-    ],
-    promptFeedback: nil)
+      promptFeedback: nil
+    )
   )
 
   return ErrorDetailsView(error: error)
@@ -217,17 +210,24 @@ struct ErrorDetailsView: View {
 #Preview("Prompt Blocked") {
   let error = GenerateContentError.promptBlocked(
     response: GenerateContentResponse(candidates: [
-      CandidateResponse(content: ModelContent(role: "model", [
+      // REPLACED: `CandidateResponse` with `Candidate`
+      Candidate(content: ModelContent(role: "model", parts: [ // ADDED: `parts: `
         """
         A _hypothetical_ model response.
         Cillum ex aliqua amet aliquip labore amet eiusmod consectetur reprehenderit sit commodo.
         """,
       ]),
       safetyRatings: [
-        SafetyRating(category: .dangerousContent, probability: .high),
-        SafetyRating(category: .harassment, probability: .low),
-        SafetyRating(category: .hateSpeech, probability: .low),
-        SafetyRating(category: .sexuallyExplicit, probability: .low),
+        // ADDED: `probabilityScore`, `severity`, `severityScore`, and `blocked`
+        SafetyRating(category: .dangerousContent, probability: .high, probabilityScore: 0.0,
+                     severity: .negligible, severityScore: 0.0, blocked: false),
+        SafetyRating(category: .harassment, probability: .low, probabilityScore: 0.0,
+                     severity: .negligible, severityScore: 0.0, blocked: false),
+        SafetyRating(category: .hateSpeech, probability: .low, probabilityScore: 0.0,
+                     severity: .negligible, severityScore: 0.0, blocked: false),
+        SafetyRating(category: .sexuallyExplicit, probability: .low,
+                     probabilityScore: 0.0, severity: .negligible, severityScore: 0.0,
+                     blocked: false),
       ],
       finishReason: FinishReason.other,
       citationMetadata: nil),
@@ -238,10 +238,6 @@ struct ErrorDetailsView: View {
   return ErrorDetailsView(error: error)
 }
 
-#Preview("Invalid API Key") {
-  ErrorDetailsView(error: GenerateContentError.invalidAPIKey(message: "Fix API key placeholder"))
-}
+// REMOVED: Preview for `GenerateContentError.invalidAPIKey`
 
-#Preview("Unsupported User Location") {
-  ErrorDetailsView(error: GenerateContentError.unsupportedUserLocation)
-}
+// REMOVED: Preview for `GenerateContentError.unsupportedUserLocation`

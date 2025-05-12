@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleGenerativeAI
+import FirebaseAI // REPLACED: `GoogleGenerativeAI` with `FirebaseAI`
 import SwiftUI
 
 struct ErrorView: View {
@@ -36,23 +36,32 @@ struct ErrorView: View {
 #Preview {
   NavigationView {
     let errorPromptBlocked = GenerateContentError.promptBlocked(
-      response: GenerateContentResponse(candidates: [
-        CandidateResponse(content: ModelContent(role: "model", [
-          """
-            A _hypothetical_ model response.
-            Cillum ex aliqua amet aliquip labore amet eiusmod consectetur reprehenderit sit commodo.
-          """,
-        ]),
-        safetyRatings: [
-          SafetyRating(category: .dangerousContent, probability: .high),
-          SafetyRating(category: .harassment, probability: .low),
-          SafetyRating(category: .hateSpeech, probability: .low),
-          SafetyRating(category: .sexuallyExplicit, probability: .low),
+      response: GenerateContentResponse(
+        candidates: [
+          Candidate( // REPLACED: `CandidateResponse` with `Candidate`
+            content: ModelContent(role: "model", parts: [ // ADDED: `parts: `
+              """
+                A _hypothetical_ model response.
+                Cillum ex aliqua amet aliquip labore amet eiusmod consectetur reprehenderit sit commodo.
+              """,
+            ]),
+            safetyRatings: [
+              // ADDED: `probabilityScore`, `severity`, `severityScore`, `blocked`
+              SafetyRating(category: .dangerousContent, probability: .high, probabilityScore: 0.0,
+                           severity: .negligible, severityScore: 0.0, blocked: false),
+              SafetyRating(category: .harassment, probability: .low, probabilityScore: 0.0,
+                           severity: .negligible, severityScore: 0.0, blocked: false),
+              SafetyRating(category: .hateSpeech, probability: .low, probabilityScore: 0.0,
+                           severity: .negligible, severityScore: 0.0, blocked: false),
+              SafetyRating(category: .sexuallyExplicit, probability: .low, probabilityScore: 0.0,
+                           severity: .negligible, severityScore: 0.0, blocked: false),
+            ],
+            finishReason: FinishReason.other,
+            citationMetadata: nil
+          ),
         ],
-        finishReason: FinishReason.other,
-        citationMetadata: nil),
-      ],
-      promptFeedback: nil)
+        promptFeedback: nil
+      )
     )
     List {
       MessageView(message: ChatMessage.samples[0])
