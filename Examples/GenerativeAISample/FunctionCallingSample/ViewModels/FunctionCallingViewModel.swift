@@ -56,7 +56,7 @@ class FunctionCallingViewModel: ObservableObject {
             ),
           ],
           // REMOVED: `requiredParameters: ["currency_from", "currency_to"]`
-        ),
+        )
       ])]
     )
     chat = model.startChat()
