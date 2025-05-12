@@ -200,7 +200,7 @@ xcb_flags+=(
 )
 
 if [[ $workspace = *.xcodeproj ]] ; then
-  RunXcodebuild -project $workspace -scheme $product "${xcb_flags[@]}" $method
+  RunXcodebuild -project "$workspace" -scheme "$product" "${xcb_flags[@]}" "$method"
 else
-  RunXcodebuild -workspace $workspace -scheme $product -destination "$destination" "${xcb_flags[@]}" $method
+  RunXcodebuild -workspace "$workspace" -scheme "$product" -destination "$destination" "${xcb_flags[@]}" "$method"
 fi
