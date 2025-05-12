@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // REPLACED: `GoogleGenerativeAI` with `FirebaseAI`
 import Foundation
-import GoogleGenerativeAI
 import OSLog
 import PhotosUI
 import SwiftUI
@@ -44,7 +44,11 @@ class PhotoReasoningViewModel: ObservableObject {
   private var model: GenerativeModel?
 
   init() {
-    model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+    // BEFORE
+    // model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+
+    // AFTER
+    model = FirebaseAI.firebaseAI().generativeModel(modelName: "gemini-2.0-flash")
   }
 
   func reason() async {
@@ -62,7 +66,7 @@ class PhotoReasoningViewModel: ObservableObject {
 
       let prompt = "Look at the image(s), and then answer the following question: \(userInput)"
 
-      var images = [any ThrowingPartsRepresentable]()
+      var images = [any PartsRepresentable]() // REPLACED: `ThrowingPartsRepresentable`
       for item in selectedItems {
         if let data = try? await item.loadTransferable(type: Data.self) {
           guard let image = UIImage(data: data) else {
@@ -84,7 +88,7 @@ class PhotoReasoningViewModel: ObservableObject {
         }
       }
 
-      let outputContentStream = model.generateContentStream(prompt, images)
+      let outputContentStream = try model.generateContentStream(prompt, images) // ADDED: `try`
 
       // stream response
       for try await outputContent in outputContentStream {

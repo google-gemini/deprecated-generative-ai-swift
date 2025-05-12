@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import FirebaseAI // REPLACED: `GoogleGenerativeAI` with `FirebaseAI`
 import Foundation
-import GoogleGenerativeAI
 import UIKit
 
 @MainActor
@@ -36,7 +36,12 @@ class ConversationViewModel: ObservableObject {
   private var chatTask: Task<Void, Never>?
 
   init() {
-    model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+    // BEFORE
+    // model = GenerativeModel(name: "gemini-1.5-flash-latest", apiKey: APIKey.default)
+
+    // AFTER
+    model = FirebaseAI.firebaseAI().generativeModel(modelName: "gemini-2.0-flash")
+
     chat = model.startChat()
   }
 
@@ -79,7 +84,7 @@ class ConversationViewModel: ObservableObject {
       messages.append(systemMessage)
 
       do {
-        let responseStream = chat.sendMessageStream(text)
+        let responseStream = try chat.sendMessageStream(text) // ADDED: `try`
         for try await chunk in responseStream {
           messages[messages.count - 1].pending = false
           if let text = chunk.text {
